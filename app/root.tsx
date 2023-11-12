@@ -1,5 +1,5 @@
 import { cssBundleHref } from '@remix-run/css-bundle'
-import type { LinksFunction } from '@remix-run/node'
+import type { LinksFunction, MetaFunction } from '@remix-run/node'
 import {
 	Links,
 	LiveReload,
@@ -10,6 +10,11 @@ import {
 } from '@remix-run/react'
 
 import sharedStyles from '~/styles/shared.css'
+
+export const meta: MetaFunction = () => [
+	{ title: 'Remix Expenses' },
+	{ name: 'description', content: 'A central place to track your expenses!' },
+]
 
 export const links: LinksFunction = () => [
 	...(cssBundleHref ? [{ rel: 'stylesheet', href: cssBundleHref }] : []),

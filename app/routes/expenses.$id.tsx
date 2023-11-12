@@ -1,12 +1,10 @@
 import type { LoaderFunctionArgs, MetaFunction } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
 
-export const meta: MetaFunction = () => {
-	return [
-		{ title: 'Expense Details' },
-		{ name: 'description', content: 'A central place to track your expenses!' },
-	]
-}
+export const meta: MetaFunction = () => [
+	{ title: 'Expense Details' },
+	{ name: 'description', content: 'A central place to track your expenses!' },
+]
 
 export default function Expenses() {
 	const id = useLoaderData<typeof loader>()
