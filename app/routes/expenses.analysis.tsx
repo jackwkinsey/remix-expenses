@@ -2,15 +2,15 @@ import type { MetaFunction } from '@remix-run/node'
 
 export const meta: MetaFunction = () => {
 	return [
-		{ title: 'Remix Expenses' },
+		{ title: 'Analyze Expenses' },
 		{ name: 'description', content: 'A central place to track your expenses!' },
 	]
 }
 
-export default function Index() {
+export default function Expenses() {
 	return (
 		<>
-			<h1>Remix Expenses - Home</h1>
+			<h1>Analyze My Expenses</h1>
 		</>
 	)
 }
