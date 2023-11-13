@@ -1,4 +1,14 @@
-function ExpenseListItem({ title, amount }) {
+type ExpenseListItemProps = {
+	id: string
+	title: string
+	amount: number
+}
+
+export default function ExpenseListItem({
+	id,
+	title,
+	amount,
+}: ExpenseListItemProps) {
 	function deleteExpenseItemHandler() {
 		// tbd
 	}
@@ -16,5 +26,3 @@ function ExpenseListItem({ title, amount }) {
 		</article>
 	)
 }
-
-export default ExpenseListItem

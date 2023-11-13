@@ -1,6 +1,11 @@
 import ChartBar from './ChartBar'
+import type { Expense } from './types'
 
-function Chart({ expenses }) {
+type ChartProps = {
+	expenses: Array<Expense>
+}
+
+export default function Chart({ expenses }: ChartProps) {
 	const chartDataPoints = [
 		{ label: 'Jan', value: 0 },
 		{ label: 'Feb', value: 0 },
@@ -40,5 +45,3 @@ function Chart({ expenses }) {
 		</section>
 	)
 }
-
-export default Chart

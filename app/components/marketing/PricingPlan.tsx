@@ -1,5 +1,18 @@
-function PricingPlan({ title, price, perks, icon }) {
-	const Icon = icon
+import React from 'react'
+
+type PricingPlanProps = {
+	title: string
+	price: number
+	perks: Array<string>
+	icon: React.ComponentType<any>
+}
+
+export default function PricingPlan({
+	title,
+	price,
+	perks,
+	icon: Icon,
+}: PricingPlanProps) {
 	return (
 		<article>
 			<header>
@@ -22,5 +35,3 @@ function PricingPlan({ title, price, perks, icon }) {
 		</article>
 	)
 }
-
-export default PricingPlan

@@ -1,4 +1,11 @@
-function Modal({ children, onClose }) {
+import type { MouseEventHandler, ReactNode } from 'react'
+
+type ModalProps = {
+	children: ReactNode
+	onClose: MouseEventHandler
+}
+
+function Modal({ children, onClose }: ModalProps) {
 	return (
 		<div className="modal-backdrop" onClick={onClose}>
 			<dialog className="modal" open onClick={event => event.stopPropagation()}>

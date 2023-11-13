@@ -1,4 +1,10 @@
-const ChartBar = ({ maxValue, value, label }) => {
+type ChartBarProps = {
+	maxValue: number
+	value: number
+	label: string
+}
+
+export default function ChartBar({ maxValue, value, label }: ChartBarProps) {
 	let barFillHeight = '0%'
 
 	if (maxValue > 0) {
@@ -17,5 +23,3 @@ const ChartBar = ({ maxValue, value, label }) => {
 		</div>
 	)
 }
-
-export default ChartBar

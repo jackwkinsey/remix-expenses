@@ -1,6 +1,13 @@
 import { useMemo } from 'react'
+import type { Expense } from './types'
 
-function calculateSummaryStatistics(expenses) {
+/**
+ * Calculates a summary of statistics for the given list of expenses
+ *
+ * @param expenses list of expenses to use for calculations
+ * @returns object with various statistics of given expenses
+ */
+function calculateSummaryStatistics(expenses: Array<Expense>) {
 	const amounts = expenses.map(expense => +expense.amount)
 	const maxAmount = Math.max(...amounts)
 	const minAmount = Math.min(...amounts)
@@ -10,7 +17,13 @@ function calculateSummaryStatistics(expenses) {
 	return { minAmount, maxAmount, sum, mean }
 }
 
-function ExpenseStatistics({ expenses }) {
+type ExpenseStatisticsProps = {
+	expenses: Array<Expense>
+}
+
+export default function ExpenseStatistics({
+	expenses,
+}: ExpenseStatisticsProps) {
 	const { minAmount, maxAmount, sum, mean } = useMemo(
 		() => calculateSummaryStatistics(expenses),
 		[expenses]
@@ -40,5 +53,3 @@ function ExpenseStatistics({ expenses }) {
 		</section>
 	)
 }
-
-export default ExpenseStatistics
