@@ -9,6 +9,6 @@ export const meta: MetaFunction = () => [
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }]
 
-export default function Auth() {
+export default function AuthPage() {
 	return <AuthForm />
 }

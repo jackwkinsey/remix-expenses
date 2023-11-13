@@ -23,7 +23,7 @@ export const meta: MetaFunction = () => [
 	{ name: 'description', content: 'A central place to track your expenses!' },
 ]
 
-export default function Expenses() {
+export default function ExpensesAnalysisPage() {
 	return (
 		<main>
 			<Chart expenses={DUMMY_EXPENSES} />

@@ -5,7 +5,7 @@ export const meta: MetaFunction = () => [
 	{ name: 'description', content: 'A central place to track your expenses!' },
 ]
 
-export default function Expenses() {
+export default function DownloadRawExpensesDataPage() {
 	return (
 		<>
 			<h1>Download Raw Expenses Data</h1>

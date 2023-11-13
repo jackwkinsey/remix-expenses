@@ -8,7 +8,7 @@ export const meta: MetaFunction = () => [
 	{ name: 'description', content: 'Edit details for an expense' },
 ]
 
-export default function Expenses() {
+export default function EditExpensePage() {
 	const navigate = useNavigate()
 	const id = useLoaderData<typeof loader>()
 

@@ -8,7 +8,7 @@ export const meta: MetaFunction = () => [
 	{ name: 'description', content: 'Add a new expense to track.' },
 ]
 
-export default function Expenses() {
+export default function AddExpensePage() {
 	const navigate = useNavigate()
 
 	function closeHandler() {
