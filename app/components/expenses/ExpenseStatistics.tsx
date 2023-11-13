@@ -32,7 +32,7 @@ export default function ExpenseStatistics({
 	return (
 		<section>
 			<h2>Summary Statistics</h2>
-			<dl id="expense-statistics">
+			<dl className="expense-statistics">
 				<div>
 					<dt>Total</dt>
 					<dd>${sum.toFixed(2)}</dd>

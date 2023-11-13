@@ -2,7 +2,7 @@ import { FaLock } from 'react-icons/fa'
 
 export default function AuthForm() {
 	return (
-		<form method="post" className="form" id="auth-form">
+		<form method="post" className="form auth-form">
 			<div className="icon-img">
 				<FaLock />
 			</div>

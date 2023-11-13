@@ -56,11 +56,11 @@
 	width: 50%;
 }
 
-#pricing {
+.pricing {
 	text-align: center;
 }
 
-#pricing-plans {
+.pricing-plans {
 	width: 36rem;
 	margin: 3rem auto;
 	display: flex;

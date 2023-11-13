@@ -1,19 +1,19 @@
-#no-expenses {
+.no-expenses {
 	text-align: center;
 }
 
-#no-expenses a {
+.no-expenses a {
 	color: var(--color-primary-100);
 }
 
-#expenses-actions {
+.expenses-actions {
 	margin: 2rem 0;
 	display: flex;
 	justify-content: center;
 	gap: 1rem;
 }
 
-#expenses-actions a {
+.expenses-actions a {
 	display: flex;
 	gap: 1rem;
 	align-items: center;
@@ -23,21 +23,21 @@
 	border-radius: 30px;
 }
 
-#expenses-actions a:hover {
+.expenses-actions a:hover {
 	background-color: var(--color-gray-100);
 }
 
-#expenses-actions a:last-of-type {
+.expenses-actions a:last-of-type {
 	background-color: transparent;
 	color: var(--color-gray-10);
 }
 
-#expenses-actions a:last-of-type:hover {
+.expenses-actions a:last-of-type:hover {
 	background-color: transparent;
 	color: var(--color-gray-100);
 }
 
-#expenses-list {
+.expenses-list {
 	max-width: 32rem;
 	margin: 2rem auto;
 }
@@ -87,20 +87,20 @@
 	color: var(--color-primary-100);
 }
 
-#expense-form {
+.expense-form {
 	padding: 1rem;
 }
 
-#expense-form .form-actions {
+.expense-form .form-actions {
 	flex-direction: row-reverse;
 	justify-content: flex-start;
 }
 
-#expense-form a {
+.expense-form a {
 	color: var(--color-gray-400);
 }
 
-#expense-form a:hover {
+.expense-form a:hover {
 	color: var(--color-gray-500);
 }
 
@@ -131,18 +131,18 @@
 	margin-top: 0.5rem;
 }
 
-#expense-statistics {
+.expense-statistics {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	grid-template-rows: 1fr 1fr;
 	gap: 2rem;
 }
 
-#expense-statistics dt {
+.expense-statistics dt {
 	color: var(--color-primary-100);
 }
 
-#expense-statistics dd {
+.expense-statistics dd {
 	margin: 0;
 	color: var(--color-primary-10);
 	font-size: 2rem;

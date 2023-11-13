@@ -2,9 +2,9 @@ import Logo from '../util/Logo'
 
 export default function MainHeader() {
 	return (
-		<header id="main-header">
+		<header className="main-header">
 			<Logo />
-			<nav id="main-nav">
+			<nav className="main-nav">
 				<ul>
 					<li>
 						<a href="/">Home</a>
