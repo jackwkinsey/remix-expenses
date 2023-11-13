@@ -1,18 +1,17 @@
 import type { LoaderFunctionArgs, MetaFunction } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
+import ExpenseForm from '~/components/expenses/ExpenseForm'
 
 export const meta: MetaFunction = () => [
-	{ title: 'Expense Details' },
-	{ name: 'description', content: 'A central place to track your expenses!' },
+	{ title: 'Edit Expense' },
+	{ name: 'description', content: 'Edit details for an expense' },
 ]
 
 export default function Expenses() {
 	const id = useLoaderData<typeof loader>()
-	return (
-		<>
-			<h1>My Expenses - {id}</h1>
-		</>
-	)
+	// TODO: get expense based on id and pre-populate form
+	console.log('Expense ID:', id)
+	return <ExpenseForm />
 }
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
