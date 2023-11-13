@@ -2,7 +2,7 @@ import React from 'react'
 
 type PricingPlanProps = {
 	title: string
-	price: number
+	price: string
 	perks: Array<string>
 	icon: React.ComponentType<any>
 }
