@@ -1,7 +1,9 @@
+import { Link } from '@remix-run/react'
+
 export default function Logo() {
 	return (
 		<h1 className="logo">
-			<a href="/">RemixExpenses</a>
+			<Link to="/">RemixExpenses</Link>
 		</h1>
 	)
 }

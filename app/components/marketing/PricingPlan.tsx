@@ -1,3 +1,4 @@
+import { Link } from '@remix-run/react'
 import React from 'react'
 
 type PricingPlanProps = {
@@ -29,7 +30,7 @@ export default function PricingPlan({
 					))}
 				</ol>
 				<div className="actions">
-					<a href="/not-implemented">Learn More</a>
+					<Link to="/not-implemented">Learn More</Link>
 				</div>
 			</div>
 		</article>
