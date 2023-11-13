@@ -23,7 +23,7 @@ export default function ExpenseListItem({
 			</div>
 			<menu className="expense-actions">
 				<button onClick={deleteExpenseItemHandler}>Delete</button>
-				<Link to={`/expenses/${id}`}>Edit</Link>
+				<Link to={id}>Edit</Link>
 			</menu>
 		</article>
 	)

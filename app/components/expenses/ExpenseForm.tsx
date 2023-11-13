@@ -29,7 +29,7 @@ export default function ExpenseForm() {
 			</div>
 			<div className="form-actions">
 				<button>Save Expense</button>
-				<Link to="/expenses">Cancel</Link>
+				<Link to="..">Cancel</Link>
 			</div>
 		</form>
 	)
