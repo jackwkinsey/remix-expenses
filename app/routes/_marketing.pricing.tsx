@@ -1,14 +1,11 @@
-import type { LinksFunction, MetaFunction } from '@remix-run/node'
+import type { MetaFunction } from '@remix-run/node'
 import { FaTrophy, FaHandshake } from 'react-icons/fa'
 import PricingPlan from '~/components/marketing/PricingPlan'
-import styles from '~/styles/marketing.css'
 
 export const meta: MetaFunction = () => [
 	{ title: 'Pricing' },
 	{ name: 'description', content: 'Pricing details for Remix Expenses' },
 ]
-
-export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }]
 
 const PRICING_PLANS = [
 	{

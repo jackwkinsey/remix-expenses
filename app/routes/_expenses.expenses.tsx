@@ -1,8 +1,7 @@
-import type { MetaFunction, LinksFunction } from '@remix-run/node'
+import type { MetaFunction } from '@remix-run/node'
 import { Outlet } from '@remix-run/react'
 import ExpensesList from '~/components/expenses/ExpensesList'
 import type { Expense } from '~/components/expenses/types'
-import styles from '~/styles/expenses.css'
 
 const DUMMY_EXPENSES: Array<Expense> = [
 	{
@@ -23,8 +22,6 @@ export const meta: MetaFunction = () => [
 	{ title: 'My Expenses' },
 	{ name: 'description', content: 'A central place to track your expenses!' },
 ]
-
-export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }]
 
 export default function ExpensesLayout() {
 	return (
