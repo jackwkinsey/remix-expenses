@@ -1,8 +1,11 @@
-import type { MetaFunction } from '@remix-run/node'
+import type { LinksFunction, MetaFunction } from '@remix-run/node'
 import { Link } from '@remix-run/react'
 import { FaArrowRight, FaDollarSign, FaChartBar } from 'react-icons/fa'
+import styles from '~/styles/marketing.css'
 
 export const meta: MetaFunction = () => []
+
+export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }]
 
 export default function Index() {
 	return (
