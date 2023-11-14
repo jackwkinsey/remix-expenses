@@ -1,5 +1,6 @@
 import type { MetaFunction } from '@remix-run/node'
-import { Outlet } from '@remix-run/react'
+import { Link, Outlet } from '@remix-run/react'
+import { FaDownload, FaPlus } from 'react-icons/fa'
 import ExpensesList from '~/components/expenses/ExpensesList'
 import type { Expense } from '~/components/expenses/types'
 
@@ -28,6 +29,16 @@ export default function ExpensesLayout() {
 		<>
 			<Outlet />
 			<main>
+				<section className="expenses-actions">
+					<Link to="add">
+						<FaPlus />
+						<span>Add Expense</span>
+					</Link>
+					<a href="/expenses/raw">
+						<FaDownload />
+						<span>Download Expenses Data</span>
+					</a>
+				</section>
 				<ExpensesList expenses={DUMMY_EXPENSES} />
 			</main>
 		</>
