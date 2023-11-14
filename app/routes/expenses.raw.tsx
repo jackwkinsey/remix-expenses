@@ -1,14 +1,20 @@
-import type { MetaFunction } from '@remix-run/node'
+import type { Expense } from '~/components/expenses/types'
 
-export const meta: MetaFunction = () => [
-	{ title: 'Download Expenses Data' },
-	{ name: 'description', content: 'A central place to track your expenses!' },
+const DUMMY_EXPENSES: Array<Expense> = [
+	{
+		id: 'e1',
+		title: 'First Expense',
+		amount: 12.99,
+		date: new Date().toISOString(),
+	},
+	{
+		id: 'e2',
+		title: 'Second Expense',
+		amount: 16.99,
+		date: new Date().toISOString(),
+	},
 ]
 
-export default function DownloadRawExpensesDataPage() {
-	return (
-		<>
-			<h1>Download Raw Expenses Data</h1>
-		</>
-	)
+export const loader = () => {
+	return DUMMY_EXPENSES
 }
