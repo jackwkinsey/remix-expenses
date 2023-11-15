@@ -31,7 +31,7 @@ export default function ExpenseForm() {
 	)
 
 	return (
-		<Form method="post" className="form expense-form">
+		<Form method={expense ? 'patch' : 'post'} className="form expense-form">
 			<p>
 				<label htmlFor="title">Expense Title</label>
 				<input

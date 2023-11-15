@@ -11,6 +11,7 @@ import {
 	type ExpenseFormData,
 	getExpenseById,
 	updateExpense,
+	deleteExpense,
 } from '~/data/expenses.server'
 import { validateExpenseInput } from '~/data/validation.server'
 
@@ -40,16 +41,21 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
 
 export const action = async ({ params, request }: ActionFunctionArgs) => {
 	const id = params.id || ''
-	const formData = await request.formData()
-	const expenseData = Object.fromEntries(formData) as ExpenseFormData
+	if (request.method === 'DELETE') {
+		await deleteExpense(id)
+		return redirect('/expenses')
+	} else if (request.method === 'PATCH') {
+		const formData = await request.formData()
+		const expenseData = Object.fromEntries(formData) as ExpenseFormData
 
-	try {
-		validateExpenseInput(expenseData)
-	} catch (error) {
-		return error
+		try {
+			validateExpenseInput(expenseData)
+		} catch (error) {
+			return error
+		}
+
+		await updateExpense(id, expenseData)
+
+		return redirect('/expenses')
 	}
-
-	await updateExpense(id, expenseData)
-
-	return redirect('/expenses')
 }

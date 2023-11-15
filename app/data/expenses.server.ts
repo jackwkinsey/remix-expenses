@@ -57,3 +57,12 @@ export async function updateExpense(id: string, expenseData: ExpenseFormData) {
 		throw error
 	}
 }
+
+export async function deleteExpense(id: string) {
+	try {
+		return await prisma.expense.delete({ where: { id } })
+	} catch (error) {
+		console.error(error)
+		throw error
+	}
+}
