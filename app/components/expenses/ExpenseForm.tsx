@@ -1,7 +1,20 @@
-import { Link } from '@remix-run/react'
+import { Link, useActionData } from '@remix-run/react'
+import type { ValidationErrors } from '~/data/validation.server'
 
 export default function ExpenseForm() {
 	const today = new Date().toISOString().slice(0, 10) // yields something like 2023-09-10
+	const validationErrors = useActionData() as ValidationErrors
+	const validationErrorMessages = validationErrors && (
+		<ul>
+			{Object.values(validationErrors).map(error => {
+				console.log(error)
+				if (!error) {
+					return null
+				}
+				return <li key={error}>{error}</li>
+			})}
+		</ul>
+	)
 
 	return (
 		<form method="post" className="form expense-form">
@@ -27,6 +40,7 @@ export default function ExpenseForm() {
 					<input type="date" id="date" name="date" max={today} required />
 				</p>
 			</div>
+			{validationErrorMessages}
 			<div className="form-actions">
 				<button>Save Expense</button>
 				<Link to="..">Cancel</Link>
