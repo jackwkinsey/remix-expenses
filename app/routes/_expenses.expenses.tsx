@@ -1,23 +1,8 @@
-import type { MetaFunction } from '@remix-run/node'
-import { Link, Outlet } from '@remix-run/react'
+import { type MetaFunction } from '@remix-run/node'
+import { Link, Outlet, useLoaderData } from '@remix-run/react'
 import { FaDownload, FaPlus } from 'react-icons/fa'
 import ExpensesList from '~/components/expenses/ExpensesList'
-import type { Expense } from '~/components/expenses/types'
-
-const DUMMY_EXPENSES: Array<Expense> = [
-	{
-		id: 'e1',
-		title: 'First Expense',
-		amount: 12.99,
-		date: new Date().toISOString(),
-	},
-	{
-		id: 'e2',
-		title: 'Second Expense',
-		amount: 16.99,
-		date: new Date().toISOString(),
-	},
-]
+import { getExpenses } from '~/data/expenses.server'
 
 export const meta: MetaFunction = () => [
 	{ title: 'My Expenses' },
@@ -25,6 +10,7 @@ export const meta: MetaFunction = () => [
 ]
 
 export default function ExpensesLayout() {
+	const expenses = useLoaderData<typeof loader>()
 	return (
 		<>
 			<Outlet />
@@ -39,8 +25,12 @@ export default function ExpensesLayout() {
 						<span>Download Expenses Data</span>
 					</a>
 				</section>
-				<ExpensesList expenses={DUMMY_EXPENSES} />
+				<ExpensesList expenses={expenses} />
 			</main>
 		</>
 	)
+}
+
+export const loader = () => {
+	return getExpenses()
 }
