@@ -1,9 +1,12 @@
-import { Link, useActionData } from '@remix-run/react'
+import { Form, Link, useActionData, useNavigation } from '@remix-run/react'
 import type { ValidationErrors } from '~/data/validation.server'
 
 export default function ExpenseForm() {
 	const today = new Date().toISOString().slice(0, 10) // yields something like 2023-09-10
 	const validationErrors = useActionData() as ValidationErrors
+	const navigation = useNavigation()
+	const isSubmitting = navigation.state !== 'idle'
+
 	const validationErrorMessages = validationErrors && (
 		<ul>
 			{Object.values(validationErrors).map(error => {
@@ -17,7 +20,7 @@ export default function ExpenseForm() {
 	)
 
 	return (
-		<form method="post" className="form expense-form">
+		<Form method="post" className="form expense-form">
 			<p>
 				<label htmlFor="title">Expense Title</label>
 				<input type="text" id="title" name="title" required maxLength={30} />
@@ -42,9 +45,11 @@ export default function ExpenseForm() {
 			</div>
 			{validationErrorMessages}
 			<div className="form-actions">
-				<button>Save Expense</button>
+				<button disabled={isSubmitting}>
+					{isSubmitting ? 'Saving...' : 'Save Expense'}
+				</button>
 				<Link to="..">Cancel</Link>
 			</div>
-		</form>
+		</Form>
 	)
 }
