@@ -1,7 +1,12 @@
-import type { MetaFunction } from '@remix-run/node'
+import {
+	redirect,
+	type ActionFunctionArgs,
+	type MetaFunction,
+} from '@remix-run/node'
 import { useNavigate } from '@remix-run/react'
 import ExpenseForm from '~/components/expenses/ExpenseForm'
 import Modal from '~/components/util/Modal'
+import { type ExpenseFormData, addExpense } from '~/data/expenses.server'
 
 export const meta: MetaFunction = () => [
 	{ title: 'Add New Expense' },
@@ -20,4 +25,16 @@ export default function AddExpensePage() {
 			<ExpenseForm />
 		</Modal>
 	)
+}
+
+export const action = async ({ request }: ActionFunctionArgs) => {
+	const formData = await request.formData()
+	const expenseData = Object.fromEntries(formData) as ExpenseFormData
+	console.log(
+		JSON.stringify(formData, null, 2),
+		JSON.stringify(expenseData, null, 2)
+	)
+	await addExpense(expenseData)
+
+	return redirect('/expenses')
 }

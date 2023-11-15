@@ -1,6 +1,6 @@
 import { prisma } from './database.server'
 
-type ExpenseFormData = {
+export type ExpenseFormData = {
 	title: string
 	amount: string
 	date: string
