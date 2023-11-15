@@ -1,7 +1,8 @@
 import type { LoaderFunctionArgs, MetaFunction } from '@remix-run/node'
-import { useLoaderData, useNavigate } from '@remix-run/react'
+import { useNavigate } from '@remix-run/react'
 import ExpenseForm from '~/components/expenses/ExpenseForm'
 import Modal from '~/components/util/Modal'
+import { getExpenseById } from '~/data/expenses.server'
 
 export const meta: MetaFunction = () => [
 	{ title: 'Edit Expense' },
@@ -10,14 +11,10 @@ export const meta: MetaFunction = () => [
 
 export default function EditExpensePage() {
 	const navigate = useNavigate()
-	const id = useLoaderData<typeof loader>()
 
 	function closeHandler() {
 		navigate('..')
 	}
-
-	// TODO: get expense based on id and pre-populate form
-	console.log('Expense ID:', id)
 
 	return (
 		<Modal onClose={closeHandler}>
@@ -27,6 +24,6 @@ export default function EditExpensePage() {
 }
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
-	const id = params.id
-	return id
+	const id = params.id || ''
+	return getExpenseById(id)
 }

@@ -32,3 +32,15 @@ export async function getExpenses() {
 		throw error
 	}
 }
+
+export async function getExpenseById(id: string) {
+	try {
+		const expense = await prisma.expense.findFirst({
+			where: { id },
+		})
+		return expense
+	} catch (error) {
+		console.error(error)
+		throw error
+	}
+}
