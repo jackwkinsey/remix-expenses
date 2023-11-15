@@ -1,9 +1,9 @@
 import { prisma } from './database.server'
 
 export type ExpenseFormData = {
-	title: string
 	amount: string
 	date: string
+	title: string
 }
 
 export async function addExpense(expenseData: ExpenseFormData) {
@@ -39,6 +39,19 @@ export async function getExpenseById(id: string) {
 			where: { id },
 		})
 		return expense
+	} catch (error) {
+		console.error(error)
+		throw error
+	}
+}
+
+export async function updateExpense(id: string, expenseData: ExpenseFormData) {
+	try {
+		const { amount, date, title } = expenseData
+		return await prisma.expense.update({
+			where: { id },
+			data: { amount: +amount, date: new Date(date), title },
+		})
 	} catch (error) {
 		console.error(error)
 		throw error

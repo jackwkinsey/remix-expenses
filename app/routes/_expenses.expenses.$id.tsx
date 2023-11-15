@@ -1,8 +1,18 @@
-import type { LoaderFunctionArgs, MetaFunction } from '@remix-run/node'
+import {
+	redirect,
+	type ActionFunctionArgs,
+	type LoaderFunctionArgs,
+	type MetaFunction,
+} from '@remix-run/node'
 import { useNavigate } from '@remix-run/react'
 import ExpenseForm from '~/components/expenses/ExpenseForm'
 import Modal from '~/components/util/Modal'
-import { getExpenseById } from '~/data/expenses.server'
+import {
+	type ExpenseFormData,
+	getExpenseById,
+	updateExpense,
+} from '~/data/expenses.server'
+import { validateExpenseInput } from '~/data/validation.server'
 
 export const meta: MetaFunction = () => [
 	{ title: 'Edit Expense' },
@@ -26,4 +36,20 @@ export default function EditExpensePage() {
 export const loader = async ({ params }: LoaderFunctionArgs) => {
 	const id = params.id || ''
 	return getExpenseById(id)
+}
+
+export const action = async ({ params, request }: ActionFunctionArgs) => {
+	const id = params.id || ''
+	const formData = await request.formData()
+	const expenseData = Object.fromEntries(formData) as ExpenseFormData
+
+	try {
+		validateExpenseInput(expenseData)
+	} catch (error) {
+		return error
+	}
+
+	await updateExpense(id, expenseData)
+
+	return redirect('/expenses')
 }
