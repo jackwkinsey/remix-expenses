@@ -43,7 +43,7 @@ export const action = async ({ params, request }: ActionFunctionArgs) => {
 	const id = params.id || ''
 	if (request.method === 'DELETE') {
 		await deleteExpense(id)
-		return redirect('/expenses')
+		return { deletedId: id }
 	} else if (request.method === 'PATCH') {
 		const formData = await request.formData()
 		const expenseData = Object.fromEntries(formData) as ExpenseFormData
