@@ -4,12 +4,15 @@ import {
 	useActionData,
 	useLoaderData,
 	useNavigation,
+	useParams,
 } from '@remix-run/react'
+import { FaTimes } from 'react-icons/fa'
 import type { ExpenseValidationErrors } from '~/data/validation.server'
 import type { loader } from '~/routes/_expenses.expenses.$id'
 
 export default function ExpenseForm() {
 	const today = new Date().toISOString().slice(0, 10) // yields something like 2023-09-10
+	const params = useParams()
 	const validationErrors = useActionData() as ExpenseValidationErrors
 	const expense = useLoaderData<typeof loader>()
 	const expenseDate = expense?.date
@@ -17,6 +20,25 @@ export default function ExpenseForm() {
 		: ''
 	const navigation = useNavigation()
 	const isSubmitting = navigation.state !== 'idle'
+
+	if (params.id && !expense) {
+		return (
+			<div>
+				<div
+					style={{
+						display: 'flex',
+						justifyContent: 'flex-end',
+						alignItems: 'center',
+					}}
+				>
+					<Link to="..">
+						<FaTimes />
+					</Link>
+				</div>
+				<p style={{ textAlign: 'center' }}>Invalid expense id.</p>
+			</div>
+		)
+	}
 
 	const validationErrorMessages = validationErrors && (
 		<ul>

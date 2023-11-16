@@ -35,8 +35,7 @@ export default function EditExpensePage() {
 }
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
-	const id = params.id || ''
-	return getExpenseById(id)
+	return getExpenseById(params.id || '')
 }
 
 export const action = async ({ params, request }: ActionFunctionArgs) => {
