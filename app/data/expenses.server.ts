@@ -16,8 +16,7 @@ export async function addExpense(expenseData: ExpenseFormData) {
 			},
 		})
 	} catch (error) {
-		console.error(error)
-		throw error
+		throw new Error('Failed to create the new expense. Please try again later.')
 	}
 }
 
@@ -28,8 +27,7 @@ export async function getExpenses() {
 		})
 		return expenses
 	} catch (error) {
-		console.error(error)
-		throw error
+		throw new Error('Failed to get list of expenses. Please try again later.')
 	}
 }
 
@@ -40,8 +38,7 @@ export async function getExpenseById(id: string) {
 		})
 		return expense
 	} catch (error) {
-		console.error(error)
-		throw error
+		throw new Error('Failed to get the expense. Please try again later.')
 	}
 }
 
@@ -53,8 +50,7 @@ export async function updateExpense(id: string, expenseData: ExpenseFormData) {
 			data: { amount: +amount, date: new Date(date), title },
 		})
 	} catch (error) {
-		console.error(error)
-		throw error
+		throw new Error('Failed to update the expense. Please try again later.')
 	}
 }
 
@@ -62,7 +58,6 @@ export async function deleteExpense(id: string) {
 	try {
 		return await prisma.expense.delete({ where: { id } })
 	} catch (error) {
-		console.error(error)
-		throw error
+		throw new Error('Failed to the delete expense. Please try again later.')
 	}
 }
