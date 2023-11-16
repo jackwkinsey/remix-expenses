@@ -255,6 +255,11 @@ button {
 	color: var(--color-primary-100);
 }
 
+.validation-errors {
+	white-space: pre-wrap;
+	text-align: left;
+}
+
 @keyframes fade-slide-up {
 	from {
 		opacity: 0;

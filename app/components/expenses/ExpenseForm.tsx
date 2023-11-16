@@ -5,12 +5,12 @@ import {
 	useLoaderData,
 	useNavigation,
 } from '@remix-run/react'
-import type { ValidationErrors } from '~/data/validation.server'
+import type { ExpenseValidationErrors } from '~/data/validation.server'
 import type { loader } from '~/routes/_expenses.expenses.$id'
 
 export default function ExpenseForm() {
 	const today = new Date().toISOString().slice(0, 10) // yields something like 2023-09-10
-	const validationErrors = useActionData() as ValidationErrors
+	const validationErrors = useActionData() as ExpenseValidationErrors
 	const expense = useLoaderData<typeof loader>()
 	const expenseDate = expense?.date
 		? new Date(expense.date).toISOString().slice(0, 10)
@@ -21,7 +21,6 @@ export default function ExpenseForm() {
 	const validationErrorMessages = validationErrors && (
 		<ul>
 			{Object.values(validationErrors).map(error => {
-				console.log(error)
 				if (!error) {
 					return null
 				}

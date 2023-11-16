@@ -1,8 +1,16 @@
-import { Form, Link, useNavigation, useSearchParams } from '@remix-run/react'
+import {
+	Form,
+	Link,
+	useActionData,
+	useNavigation,
+	useSearchParams,
+} from '@remix-run/react'
 import { FaLock, FaUserPlus } from 'react-icons/fa'
+import type { UserCredentialsValidationErrors } from '~/data/validation.server'
 
 export default function AuthForm() {
 	const navigation = useNavigation()
+	const validationErrors = useActionData() as UserCredentialsValidationErrors
 	const [searchParams] = useSearchParams()
 	const authMode = searchParams.get('mode') || 'login'
 
@@ -12,6 +20,17 @@ export default function AuthForm() {
 	const toggleMode = authMode === 'login' ? '?mode=signup' : '?mode=login'
 
 	const isSubmitting = navigation.state !== 'idle'
+
+	const validationErrorMessages = validationErrors && (
+		<ul className="validation-errors">
+			{Object.values(validationErrors).map(error => {
+				if (!error) {
+					return null
+				}
+				return <li key={error}>{error}</li>
+			})}
+		</ul>
+	)
 
 	return (
 		<Form method="post" className="form auth-form">
@@ -26,6 +45,7 @@ export default function AuthForm() {
 				<label htmlFor="password">Password</label>
 				<input type="password" id="password" name="password" minLength={7} />
 			</p>
+			{validationErrorMessages}
 			<div className="form-actions">
 				<button disabled={isSubmitting}>
 					{isSubmitting ? 'Authenticating...' : submitButtonCaption}

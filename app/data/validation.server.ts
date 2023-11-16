@@ -1,4 +1,5 @@
 import type { ExpenseFormData } from './expenses.server'
+import type { UserCredentialsFormData } from './user.server'
 
 function isValidTitle(value: string): boolean {
 	if (!value) {
@@ -23,14 +24,23 @@ function isValidDate(value: string): boolean {
 	return new Date(value).getTime() < new Date().getTime()
 }
 
-export type ValidationErrors = {
+function isValidEmail(value: string): boolean {
+	const emailRegex: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+	return emailRegex.test(value)
+}
+
+function isValidPassword(value: string): boolean {
+	const passwordRegex: RegExp = /^(?=.*[A-Z])(?=.*[!@#$%^&_+=]).{8,}$/
+	return passwordRegex.test(value)
+}
+
+export type ExpenseValidationErrors = {
 	amount: string
 	date: string
 	title: string
 }
-
 export function validateExpenseInput(input: ExpenseFormData) {
-	let validationErrors: ValidationErrors = {
+	let validationErrors: ExpenseValidationErrors = {
 		amount: '',
 		date: '',
 		title: '',
@@ -55,6 +65,30 @@ export function validateExpenseInput(input: ExpenseFormData) {
 		validationErrors.date ||
 		validationErrors.title
 	) {
+		throw validationErrors
+	}
+}
+
+export type UserCredentialsValidationErrors = {
+	email: string
+	password: string
+}
+export function validateUserCredentialsInput(input: UserCredentialsFormData) {
+	let validationErrors: UserCredentialsValidationErrors = {
+		email: '',
+		password: '',
+	}
+
+	if (!isValidEmail(input.email)) {
+		validationErrors.email = 'Invalid email. Please provide a valid email.'
+	}
+
+	if (!isValidPassword(input.password)) {
+		validationErrors.password =
+			'Invalid password. Passwords must contain: \n - at least 8 characters \n - at least one capital letter \n - at least one special character (!@#$%^&_+=)'
+	}
+
+	if (validationErrors.email || validationErrors.password) {
 		throw validationErrors
 	}
 }
