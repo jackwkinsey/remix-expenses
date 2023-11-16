@@ -1,8 +1,5 @@
-import type { MetaFunction } from '@remix-run/node'
 import { Link } from '@remix-run/react'
 import { FaArrowRight, FaDollarSign, FaChartBar } from 'react-icons/fa'
-
-export const meta: MetaFunction = () => []
 
 export default function Index() {
 	return (
