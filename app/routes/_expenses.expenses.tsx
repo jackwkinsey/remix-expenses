@@ -11,6 +11,17 @@ export const meta: MetaFunction = () => [
 
 export default function ExpensesLayout() {
 	const expenses = useLoaderData<typeof loader>()
+	const expensesListView =
+		expenses && expenses.length ? (
+			<ExpensesList expenses={expenses} />
+		) : (
+			<section className="no-expenses">
+				<h1>No expenses found</h1>
+				<p>
+					Start <Link to="add">adding some</Link> today.
+				</p>
+			</section>
+		)
 	return (
 		<>
 			<Outlet />
@@ -25,7 +36,7 @@ export default function ExpensesLayout() {
 						<span>Download Expenses Data</span>
 					</a>
 				</section>
-				<ExpensesList expenses={expenses} />
+				{expensesListView}
 			</main>
 		</>
 	)
