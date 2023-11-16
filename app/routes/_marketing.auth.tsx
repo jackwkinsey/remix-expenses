@@ -24,6 +24,9 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 	const formData = await request.formData()
 	const userCredentials = Object.fromEntries(formData)
 
+	// TODO: validate user input
+	// validateCredentialsInput(userCredentials)
+
 	if (authMode === 'login') {
 		// TODO: login logic
 		console.log('login with credentials:', userCredentials)
