@@ -1,8 +1,7 @@
-import {
-	redirect,
-	type ActionFunctionArgs,
-	type LinksFunction,
-	type MetaFunction,
+import type {
+	ActionFunctionArgs,
+	LinksFunction,
+	MetaFunction,
 } from '@remix-run/node'
 import AuthForm from '~/components/auth/AuthForm'
 import {
@@ -55,6 +54,4 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 		const e = error as CredentialsError
 		return { credentials: e.message }
 	}
-
-	return redirect('/auth')
 }
