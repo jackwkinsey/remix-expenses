@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs'
 import { prisma } from './database.server'
-import { createCookieSessionStorage, redirect } from '@remix-run/node'
+import { createCookieSessionStorage, redirect } from '@vercel/remix'
 
 const SESSION_SECRET = process.env.SESSION_SECRET
 

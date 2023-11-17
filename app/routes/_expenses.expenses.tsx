@@ -1,4 +1,4 @@
-import type { LoaderFunctionArgs, MetaFunction } from '@remix-run/node'
+import type { LoaderFunctionArgs, MetaFunction } from '@vercel/remix'
 import { Link, Outlet, useLoaderData } from '@remix-run/react'
 import { FaDownload, FaPlus } from 'react-icons/fa'
 import ExpensesList from '~/components/expenses/ExpensesList'

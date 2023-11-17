@@ -2,7 +2,7 @@ import type {
 	ActionFunctionArgs,
 	LinksFunction,
 	MetaFunction,
-} from '@remix-run/node'
+} from '@vercel/remix'
 import AuthForm from '~/components/auth/AuthForm'
 import {
 	signup,

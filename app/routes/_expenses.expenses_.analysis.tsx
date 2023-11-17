@@ -1,4 +1,4 @@
-import type { LoaderFunctionArgs, MetaFunction } from '@remix-run/node'
+import type { LoaderFunctionArgs, MetaFunction } from '@vercel/remix'
 import { Link, useLoaderData } from '@remix-run/react'
 import Chart from '~/components/expenses/Chart'
 import ExpenseStatistics from '~/components/expenses/ExpenseStatistics'

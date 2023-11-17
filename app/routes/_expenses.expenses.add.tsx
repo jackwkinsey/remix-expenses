@@ -2,7 +2,7 @@ import {
 	redirect,
 	type ActionFunctionArgs,
 	type MetaFunction,
-} from '@remix-run/node'
+} from '@vercel/remix'
 import { useNavigate } from '@remix-run/react'
 import ExpenseForm from '~/components/expenses/ExpenseForm'
 import Modal from '~/components/util/Modal'

@@ -1,4 +1,4 @@
-import type { LoaderFunctionArgs } from '@remix-run/node'
+import type { LoaderFunctionArgs } from '@vercel/remix'
 import { requireUserSession } from '~/data/auth.server'
 import { getExpenses } from '~/data/expenses.server'
 

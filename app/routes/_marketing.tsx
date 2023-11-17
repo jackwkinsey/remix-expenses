@@ -2,7 +2,7 @@ import type {
 	HeadersFunction,
 	LinksFunction,
 	LoaderFunctionArgs,
-} from '@remix-run/node'
+} from '@vercel/remix'
 import { Outlet } from '@remix-run/react'
 import MainHeader from '~/components/navigation/MainHeader'
 import { getUserFromSession } from '~/data/auth.server'

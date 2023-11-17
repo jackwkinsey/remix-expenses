@@ -1,4 +1,4 @@
-import { type LinksFunction, type LoaderFunctionArgs } from '@remix-run/node'
+import { type LinksFunction, type LoaderFunctionArgs } from '@vercel/remix'
 import { Outlet } from '@remix-run/react'
 import ExpensesHeader from '~/components/navigation/ExpensesHeader'
 import { requireUserSession } from '~/data/auth.server'

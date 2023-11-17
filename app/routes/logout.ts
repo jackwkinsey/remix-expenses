@@ -1,4 +1,4 @@
-import { json, type ActionFunctionArgs } from '@remix-run/node'
+import { json, type ActionFunctionArgs } from '@vercel/remix'
 import { destroyUserSession } from '~/data/auth.server'
 
 export const action = ({ request }: ActionFunctionArgs) => {
