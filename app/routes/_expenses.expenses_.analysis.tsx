@@ -19,7 +19,8 @@ export default function ExpensesAnalysisPage() {
 				<section className="no-expenses">
 					<h1>No expenses found to analyze</h1>
 					<p>
-						Start <Link to="add">adding some</Link> today to view analytics.
+						Start <Link to="/expenses/add">adding some</Link> today to view
+						analytics.
 					</p>
 				</section>
 			</main>
