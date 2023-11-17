@@ -1,4 +1,4 @@
-import { NavLink } from '@remix-run/react'
+import { Form, NavLink } from '@remix-run/react'
 
 import Logo from '~/components/util/Logo'
 
@@ -19,7 +19,9 @@ export default function ExpensesHeader() {
 				</ul>
 			</nav>
 			<nav className="cta-nav">
-				<button className="cta-alt">Logout</button>
+				<Form method="post" action="/logout" className="logout-form">
+					<button className="cta-alt">Logout</button>
+				</Form>
 			</nav>
 		</header>
 	)

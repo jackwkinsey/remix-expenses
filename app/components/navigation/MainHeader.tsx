@@ -1,13 +1,13 @@
-import { Link, NavLink, useLoaderData } from '@remix-run/react'
+import { Form, Link, NavLink, useLoaderData } from '@remix-run/react'
 import Logo from '~/components/util/Logo'
 
 export default function MainHeader() {
 	const userId = useLoaderData<typeof String>()
 
 	const ctaButton = userId ? (
-		<form>
+		<Form method="post" action="/logout" className="logout-form">
 			<button className="cta-alt">Logout</button>
-		</form>
+		</Form>
 	) : (
 		<Link to="/auth" className="cta">
 			Login

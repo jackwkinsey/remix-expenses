@@ -49,6 +49,16 @@ export async function getUserFromSession(request: Request) {
 	return userId
 }
 
+export async function destroyUserSession(request: Request) {
+	const session = await sessionStorage.getSession(request.headers.get('Cookie'))
+
+	return redirect('/', {
+		headers: {
+			'Set-Cookie': await sessionStorage.destroySession(session),
+		},
+	})
+}
+
 export async function signup({ email, password }: UserCredentialsFormData) {
 	const existingUser = await prisma.user.findFirst({ where: { email } })
 
