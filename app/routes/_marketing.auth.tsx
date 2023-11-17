@@ -14,10 +14,16 @@ import {
 import { validateUserCredentialsInput } from '~/data/validation.server'
 import styles from '~/styles/auth.css'
 
-export const meta: MetaFunction = () => [
-	{ title: 'Login | Sign Up' },
-	{ name: 'description', content: 'Log in or sign up to track your expenses!' },
-]
+export const meta: MetaFunction = ({ params, location, data, matches }) => {
+	const isSignUpMode = location.search === '?mode=signup'
+	return [
+		{ title: isSignUpMode ? 'Sign Up' : 'Login' },
+		{
+			name: 'description',
+			content: 'Log in or sign up to track your expenses!',
+		},
+	]
+}
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }]
 
