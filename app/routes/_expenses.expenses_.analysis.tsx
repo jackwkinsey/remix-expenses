@@ -1,7 +1,8 @@
-import type { MetaFunction } from '@remix-run/node'
+import type { LoaderFunctionArgs, MetaFunction } from '@remix-run/node'
 import { Link, useLoaderData } from '@remix-run/react'
 import Chart from '~/components/expenses/Chart'
 import ExpenseStatistics from '~/components/expenses/ExpenseStatistics'
+import { requireUserSession } from '~/data/auth.server'
 import { getExpenses } from '~/data/expenses.server'
 
 export const meta: MetaFunction = () => [
@@ -33,6 +34,7 @@ export default function ExpensesAnalysisPage() {
 	)
 }
 
-export const loader = () => {
+export const loader = async ({ request }: LoaderFunctionArgs) => {
+	await requireUserSession(request)
 	return getExpenses()
 }

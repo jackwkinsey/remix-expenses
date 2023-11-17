@@ -7,6 +7,7 @@ import {
 import { useNavigate } from '@remix-run/react'
 import ExpenseForm from '~/components/expenses/ExpenseForm'
 import Modal from '~/components/util/Modal'
+import { requireUserSession } from '~/data/auth.server'
 import {
 	type ExpenseFormData,
 	getExpenseById,
@@ -34,7 +35,8 @@ export default function EditExpensePage() {
 	)
 }
 
-export const loader = async ({ params }: LoaderFunctionArgs) => {
+export const loader = async ({ params, request }: LoaderFunctionArgs) => {
+	await requireUserSession(request)
 	return getExpenseById(params.id || '')
 }
 
