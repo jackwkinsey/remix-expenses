@@ -1,5 +1,5 @@
 import type { ExpenseFormData } from './expenses.server'
-import type { UserCredentialsFormData } from './user.server'
+import type { UserCredentialsFormData } from './auth.server'
 
 function isValidTitle(value: string): boolean {
 	if (!value) {
