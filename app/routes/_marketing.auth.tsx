@@ -9,6 +9,7 @@ import {
 	signup,
 	type UserCredentialsFormData,
 	type CredentialsError,
+	login,
 } from '~/data/auth.server'
 import { validateUserCredentialsInput } from '~/data/validation.server'
 import styles from '~/styles/auth.css'
@@ -40,17 +41,13 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
 	try {
 		if (authMode === 'login') {
-			// TODO: login logic
-			console.log('login with credentials:', userCredentialsData)
+			return await login(userCredentialsData)
 		} else {
-			await signup(userCredentialsData)
-			return redirect('/expenses')
+			return await signup(userCredentialsData)
 		}
 	} catch (error) {
 		const e = error as CredentialsError
-		if (e.status === 422) {
-			return { credentials: e.message }
-		}
+		return { credentials: e.message }
 	}
 
 	return redirect('/auth')
