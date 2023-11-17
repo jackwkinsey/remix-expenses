@@ -31,7 +31,7 @@ export default function ExpensesLayout() {
 						<FaPlus />
 						<span>Add Expense</span>
 					</Link>
-					<a href="/expenses/raw">
+					<a href="/expenses/raw" target="_blank">
 						<FaDownload />
 						<span>Download Expenses Data</span>
 					</a>
