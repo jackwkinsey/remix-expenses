@@ -19,7 +19,7 @@ export default function ExpensesHeader() {
 				</ul>
 			</nav>
 			<nav className="cta-nav">
-				<button className="cta">Logout</button>
+				<button className="cta-alt">Logout</button>
 			</nav>
 		</header>
 	)
