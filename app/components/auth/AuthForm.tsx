@@ -6,11 +6,11 @@ import {
 	useSearchParams,
 } from '@remix-run/react'
 import { FaLock, FaUserPlus } from 'react-icons/fa'
-import type { UserCredentialsValidationErrors } from '~/data/validation.server'
+import type { ValidationErrors } from '~/components/types'
 
 export default function AuthForm() {
 	const navigation = useNavigation()
-	const validationErrors = useActionData() as UserCredentialsValidationErrors
+	const validationErrors = useActionData() as ValidationErrors
 	const [searchParams] = useSearchParams()
 	const authMode = searchParams.get('mode') || 'login'
 

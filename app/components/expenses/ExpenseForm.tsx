@@ -7,13 +7,13 @@ import {
 	useParams,
 } from '@remix-run/react'
 import { FaTimes } from 'react-icons/fa'
-import type { ExpenseValidationErrors } from '~/data/validation.server'
 import type { loader } from '~/routes/_expenses.expenses.$id'
+import type { ValidationErrors } from '~/components/types'
 
 export default function ExpenseForm() {
 	const today = new Date().toISOString().slice(0, 10) // yields something like 2023-09-10
 	const params = useParams()
-	const validationErrors = useActionData() as ExpenseValidationErrors
+	const validationErrors = useActionData() as ValidationErrors
 	const expense = useLoaderData<typeof loader>()
 	const expenseDate = expense?.date
 		? new Date(expense.date).toISOString().slice(0, 10)
