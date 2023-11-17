@@ -43,7 +43,7 @@ export default function AuthForm() {
 			</p>
 			<p>
 				<label htmlFor="password">Password</label>
-				<input type="password" id="password" name="password" minLength={7} />
+				<input type="password" id="password" name="password" minLength={8} />
 			</p>
 			{validationErrorMessages}
 			<div className="form-actions">

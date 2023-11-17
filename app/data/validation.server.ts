@@ -80,7 +80,7 @@ export function validateUserCredentialsInput(input: UserCredentialsFormData) {
 	}
 
 	if (!isValidEmail(input.email)) {
-		validationErrors.email = 'Invalid email. Please provide a valid email.'
+		validationErrors.email = 'Invalid email address.'
 	}
 
 	if (!isValidPassword(input.password)) {
