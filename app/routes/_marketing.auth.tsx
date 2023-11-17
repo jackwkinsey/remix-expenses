@@ -5,7 +5,11 @@ import {
 	type MetaFunction,
 } from '@remix-run/node'
 import AuthForm from '~/components/auth/AuthForm'
-import type { UserCredentialsFormData } from '~/data/user.server'
+import {
+	signup,
+	type UserCredentialsFormData,
+	type CredentialsError,
+} from '~/data/auth.server'
 import { validateUserCredentialsInput } from '~/data/validation.server'
 import styles from '~/styles/auth.css'
 
@@ -34,12 +38,19 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 		return error
 	}
 
-	if (authMode === 'login') {
-		// TODO: login logic
-		console.log('login with credentials:', userCredentialsData)
-	} else {
-		// TODO: signup logic (create user)
-		console.log('create new user with credentials:', userCredentialsData)
+	try {
+		if (authMode === 'login') {
+			// TODO: login logic
+			console.log('login with credentials:', userCredentialsData)
+		} else {
+			await signup(userCredentialsData)
+			return redirect('/expenses')
+		}
+	} catch (error) {
+		const e = error as CredentialsError
+		if (e.status === 422) {
+			return { credentials: e.message }
+		}
 	}
 
 	return redirect('/auth')
