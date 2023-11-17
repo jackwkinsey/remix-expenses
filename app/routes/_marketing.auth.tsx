@@ -15,8 +15,8 @@ import { validateUserCredentialsInput } from '~/data/validation.server'
 import styles from '~/styles/auth.css'
 
 export const meta: MetaFunction = () => [
-	{ title: 'Login' },
-	{ name: 'description', content: 'Log in to track your expenses!' },
+	{ title: 'Login | Sign Up' },
+	{ name: 'description', content: 'Log in or sign up to track your expenses!' },
 ]
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }]
