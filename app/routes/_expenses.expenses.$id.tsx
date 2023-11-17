@@ -7,7 +7,7 @@ import {
 import { useNavigate } from '@remix-run/react'
 import ExpenseForm from '~/components/expenses/ExpenseForm'
 import Modal from '~/components/util/Modal'
-import { requireUserSession } from '~/data/auth.server'
+import { getUserFromSession, requireUserSession } from '~/data/auth.server'
 import {
 	type ExpenseFormData,
 	getExpenseById,
@@ -36,14 +36,15 @@ export default function EditExpensePage() {
 }
 
 export const loader = async ({ params, request }: LoaderFunctionArgs) => {
-	await requireUserSession(request)
-	return getExpenseById(params.id || '')
+	const userId: string = await requireUserSession(request)
+	return getExpenseById(params.id || '', userId)
 }
 
 export const action = async ({ params, request }: ActionFunctionArgs) => {
+	const userId: string = await getUserFromSession(request)
 	const id = params.id || ''
 	if (request.method === 'DELETE') {
-		await deleteExpense(id)
+		await deleteExpense(id, userId)
 		return { deletedId: id }
 	} else if (request.method === 'PATCH') {
 		const formData = await request.formData()
@@ -55,7 +56,7 @@ export const action = async ({ params, request }: ActionFunctionArgs) => {
 			return error
 		}
 
-		await updateExpense(id, expenseData)
+		await updateExpense(id, expenseData, userId)
 
 		return redirect('/expenses')
 	}

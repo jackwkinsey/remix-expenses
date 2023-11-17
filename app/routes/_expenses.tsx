@@ -16,5 +16,5 @@ export default function _ExpensesLayout() {
 }
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
-	await requireUserSession(request)
+	return await requireUserSession(request)
 }

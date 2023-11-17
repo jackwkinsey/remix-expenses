@@ -6,13 +6,18 @@ export type ExpenseFormData = {
 	title: string
 }
 
-export async function addExpense(expenseData: ExpenseFormData) {
+export async function addExpense(expenseData: ExpenseFormData, userId: string) {
+	if (!userId) {
+		throw new Error('Cannot create an expense without a user. Please try again')
+	}
+	const { amount, date, title } = expenseData
 	try {
 		return await prisma.expense.create({
 			data: {
-				title: expenseData.title,
-				amount: +expenseData.amount,
-				date: new Date(expenseData.date),
+				title: title.trim(),
+				amount: +amount,
+				date: new Date(date),
+				User: { connect: { id: userId } },
 			},
 		})
 	} catch (error) {
@@ -20,10 +25,14 @@ export async function addExpense(expenseData: ExpenseFormData) {
 	}
 }
 
-export async function getExpenses() {
+export async function getExpenses(userId: string) {
+	if (!userId) {
+		throw new Error('Failed to get list of expenses. Please try again later.')
+	}
 	try {
 		const expenses = await prisma.expense.findMany({
 			orderBy: { date: 'desc' },
+			where: { userId },
 		})
 		return expenses
 	} catch (error) {
@@ -31,10 +40,13 @@ export async function getExpenses() {
 	}
 }
 
-export async function getExpenseById(id: string) {
+export async function getExpenseById(id: string, userId: string) {
+	if (!userId) {
+		throw new Error('Failed to get the expense. Please try again later.')
+	}
 	try {
 		const expense = await prisma.expense.findFirst({
-			where: { id },
+			where: { id, userId },
 		})
 		return expense
 	} catch (error) {
@@ -42,21 +54,31 @@ export async function getExpenseById(id: string) {
 	}
 }
 
-export async function updateExpense(id: string, expenseData: ExpenseFormData) {
+export async function updateExpense(
+	id: string,
+	expenseData: ExpenseFormData,
+	userId: string
+) {
+	if (!userId) {
+		throw new Error('Failed to update the expense. Please try again later.')
+	}
 	try {
 		const { amount, date, title } = expenseData
 		return await prisma.expense.update({
-			where: { id },
-			data: { amount: +amount, date: new Date(date), title },
+			where: { id, userId },
+			data: { amount: +amount, date: new Date(date), title: title.trim() },
 		})
 	} catch (error) {
 		throw new Error('Failed to update the expense. Please try again later.')
 	}
 }
 
-export async function deleteExpense(id: string) {
+export async function deleteExpense(id: string, userId: string) {
+	if (!userId) {
+		throw new Error('Failed to the delete expense. Please try again later.')
+	}
 	try {
-		return await prisma.expense.delete({ where: { id } })
+		return await prisma.expense.delete({ where: { id, userId } })
 	} catch (error) {
 		throw new Error('Failed to the delete expense. Please try again later.')
 	}
