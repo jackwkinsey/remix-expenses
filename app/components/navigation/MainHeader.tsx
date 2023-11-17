@@ -15,7 +15,7 @@ export default function MainHeader() {
 					</li>
 				</ul>
 			</nav>
-			<nav id="cta-nav">
+			<nav className="cta-nav">
 				<ul>
 					<li>
 						<Link to="/auth" className="cta">
